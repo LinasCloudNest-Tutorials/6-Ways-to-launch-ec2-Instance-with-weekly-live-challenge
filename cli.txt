@@ -1,0 +1,8 @@
+aws ec2 run-instances \
+  --image-id ami-0953476d60561c955 \
+  --count 1 \
+  --instance-type t2.micro \
+  --key-name Akosuakeypem \
+  --security-group-ids sg-001ab1d59b4cfd130 \
+  --subnet-id subnet-0e4b3ec80f9f007eb \
+  --user-data file://setup.sh

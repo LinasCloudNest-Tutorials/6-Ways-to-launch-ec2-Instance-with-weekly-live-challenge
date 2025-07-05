@@ -1,0 +1,22 @@
+Resources:
+  WebServerInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0953476d60561c955
+      KeyName: Akosuakeypem
+      SecurityGroupIds:
+        - sg-001ab1d59b4cfd130
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "Welcome to AWS CloudStart Youth 2025!" > /var/www/html/index.html
+      Tags:
+        - Key: Name
+          Value: ApacheWebServer
+        - Key: Project
+          Value: AWS CloudStart Youth 2025
